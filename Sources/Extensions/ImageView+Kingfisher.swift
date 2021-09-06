@@ -301,8 +301,8 @@ extension KingfisherWrapper where Base: KFCrossPlatformImageView {
 //        let maybeIndicator = indicator
 //        maybeIndicator?.startAnimatingView()
 //
-        let issuedIdentifier = Source.Identifier.next()
-        mutatingSelf.taskIdentifier = issuedIdentifier
+//        let issuedIdentifier = Source.Identifier.next()
+//        mutatingSelf.taskIdentifier = issuedIdentifier
 //
 //        if base.shouldPreloadAllAnimation() {
 //            options.preloadAllAnimationData = true
@@ -329,18 +329,18 @@ extension KingfisherWrapper where Base: KFCrossPlatformImageView {
             completionHandler: { result in
                 CallbackQueue.mainCurrentOrAsync.execute {
 //                    maybeIndicator?.stopAnimatingView()
-                    guard issuedIdentifier == self.taskIdentifier else {
-                        let reason: KingfisherError.ImageSettingErrorReason
-                        do {
-                            let value = try result.get()
-                            reason = .notCurrentSourceTask(result: value, error: nil, source: source)
-                        } catch {
-                            reason = .notCurrentSourceTask(result: nil, error: error, source: source)
-                        }
-                        let error = KingfisherError.imageSettingError(reason: reason)
-                        completionHandler?(.failure(error))
-                        return
-                    }
+//                    guard issuedIdentifier == self.taskIdentifier else {
+//                        let reason: KingfisherError.ImageSettingErrorReason
+//                        do {
+//                            let value = try result.get()
+//                            reason = .notCurrentSourceTask(result: value, error: nil, source: source)
+//                        } catch {
+//                            reason = .notCurrentSourceTask(result: nil, error: error, source: source)
+//                        }
+//                        let error = KingfisherError.imageSettingError(reason: reason)
+//                        completionHandler?(.failure(error))
+//                        return
+//                    }
 
                     mutatingSelf.imageTask = nil
                     mutatingSelf.taskIdentifier = nil
