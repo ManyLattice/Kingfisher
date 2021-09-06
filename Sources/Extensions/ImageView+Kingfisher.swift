@@ -327,7 +327,7 @@ extension KingfisherWrapper where Base: KFCrossPlatformImageView {
             options: options,
             downloadTaskUpdated: { mutatingSelf.imageTask = $0 },
             completionHandler: { result in
-                CallbackQueue.mainCurrentOrAsync.execute {
+//                CallbackQueue.mainCurrentOrAsync.execute {
                     maybeIndicator?.stopAnimatingView()
                     guard issuedIdentifier == self.taskIdentifier else {
                         let reason: KingfisherError.ImageSettingErrorReason
@@ -348,7 +348,7 @@ extension KingfisherWrapper where Base: KFCrossPlatformImageView {
                     switch result {
                     case .success(let value):
                         guard self.needsTransition(options: options, cacheType: value.cacheType) else {
-//                            mutatingSelf.placeholder = nil
+                            mutatingSelf.placeholder = nil
                             self.base.image = value.image
                             completionHandler?(result)
                             return
@@ -364,7 +364,7 @@ extension KingfisherWrapper where Base: KFCrossPlatformImageView {
                         }
                         completionHandler?(result)
                     }
-                }
+//                }
             }
         )
         mutatingSelf.imageTask = task
