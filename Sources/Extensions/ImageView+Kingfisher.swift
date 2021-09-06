@@ -297,30 +297,30 @@ extension KingfisherWrapper where Base: KFCrossPlatformImageView {
             // Always set placeholder while there is no image/placeholder yet.
             mutatingSelf.placeholder = placeholder
         }
-
+//
         let maybeIndicator = indicator
         maybeIndicator?.startAnimatingView()
-
+//
         let issuedIdentifier = Source.Identifier.next()
         mutatingSelf.taskIdentifier = issuedIdentifier
-
-        if base.shouldPreloadAllAnimation() {
-            options.preloadAllAnimationData = true
-        }
-
-        if let block = progressBlock {
-            options.onDataReceived = (options.onDataReceived ?? []) + [ImageLoadingProgressSideEffect(block)]
-        }
-
-        if let provider = ImageProgressiveProvider(options, refresh: { image in
-            self.base.image = image
-        }) {
-            options.onDataReceived = (options.onDataReceived ?? []) + [provider]
-        }
-
-        options.onDataReceived?.forEach {
-            $0.onShouldApply = { issuedIdentifier == self.taskIdentifier }
-        }
+//
+//        if base.shouldPreloadAllAnimation() {
+//            options.preloadAllAnimationData = true
+//        }
+//
+//        if let block = progressBlock {
+//            options.onDataReceived = (options.onDataReceived ?? []) + [ImageLoadingProgressSideEffect(block)]
+//        }
+//
+//        if let provider = ImageProgressiveProvider(options, refresh: { image in
+//            self.base.image = image
+//        }) {
+//            options.onDataReceived = (options.onDataReceived ?? []) + [provider]
+//        }
+//
+//        options.onDataReceived?.forEach {
+//            $0.onShouldApply = { issuedIdentifier == self.taskIdentifier }
+//        }
 
         let task = KingfisherManager.shared.retrieveImage(
             with: source,
