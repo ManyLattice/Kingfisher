@@ -349,7 +349,7 @@ extension KingfisherWrapper where Base: KFCrossPlatformImageView {
                     case .success(let value):
                         guard self.needsTransition(options: options, cacheType: value.cacheType) else {
                             mutatingSelf.placeholder = nil
-//                            self.base.image = value.image
+                            self.base.image = value.image
                             completionHandler?(result)
                             return
                         }
