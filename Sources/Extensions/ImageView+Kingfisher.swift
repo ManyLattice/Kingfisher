@@ -367,7 +367,7 @@ extension KingfisherWrapper where Base: KFCrossPlatformImageView {
                 }
             }
         )
-        mutatingSelf.imageTask = task
+//        mutatingSelf.imageTask = task
         return task
     }
 
