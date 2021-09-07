@@ -301,8 +301,8 @@ extension KingfisherWrapper where Base: KFCrossPlatformImageView {
 //        let maybeIndicator = indicator
 //        maybeIndicator?.startAnimatingView()
 
-//        let issuedIdentifier = Source.Identifier.next()
-//        mutatingSelf.taskIdentifier = issuedIdentifier
+        let issuedIdentifier = Source.Identifier.next()
+        mutatingSelf.taskIdentifier = issuedIdentifier
 //
 //        if base.shouldPreloadAllAnimation() {
 //            options.preloadAllAnimationData = true
@@ -329,7 +329,7 @@ extension KingfisherWrapper where Base: KFCrossPlatformImageView {
             completionHandler: { result in
                 CallbackQueue.mainCurrentOrAsync.execute {
 //                    maybeIndicator?.stopAnimatingView()
-//                    guard issuedIdentifier == self.taskIdentifier else {
+                    guard issuedIdentifier == self.taskIdentifier else {
 //                        let reason: KingfisherError.ImageSettingErrorReason
 //                        do {
 //                            let value = try result.get()
@@ -339,11 +339,11 @@ extension KingfisherWrapper where Base: KFCrossPlatformImageView {
 //                        }
 //                        let error = KingfisherError.imageSettingError(reason: reason)
 //                        completionHandler?(.failure(error))
-//                        return
-//                    }
+                        return
+                    }
 
 //                    mutatingSelf.imageTask = nil
-//                    mutatingSelf.taskIdentifier = nil
+                    mutatingSelf.taskIdentifier = nil
 
                     switch result {
                     case .success(let value):
