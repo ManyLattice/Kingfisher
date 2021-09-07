@@ -50,25 +50,25 @@ class ImageDataProcessor {
     }
 
     private func doProcess() {
-        var processedImages = [String: KFCrossPlatformImage]()
-        for callback in callbacks {
-            let processor = callback.options.processor
-            var image = processedImages[processor.identifier]
-            if image == nil {
-                image = processor.process(item: .data(data), options: callback.options)
-                processedImages[processor.identifier] = image
-            }
-
-            let result: Result<KFCrossPlatformImage, KingfisherError>
-            if let image = image {
-                let finalImage = callback.options.backgroundDecode ? image.kf.decoded : image
-                result = .success(finalImage)
-            } else {
-                let error = KingfisherError.processorError(
-                    reason: .processingFailed(processor: processor, item: .data(data)))
-                result = .failure(error)
-            }
-            onImageProcessed.call((result, callback))
-        }
+//        var processedImages = [String: KFCrossPlatformImage]()
+//        for callback in callbacks {
+//            let processor = callback.options.processor
+//            var image = processedImages[processor.identifier]
+//            if image == nil {
+//                image = processor.process(item: .data(data), options: callback.options)
+//                processedImages[processor.identifier] = image
+//            }
+//
+//            let result: Result<KFCrossPlatformImage, KingfisherError>
+//            if let image = image {
+//                let finalImage = callback.options.backgroundDecode ? image.kf.decoded : image
+//                result = .success(finalImage)
+//            } else {
+//                let error = KingfisherError.processorError(
+//                    reason: .processingFailed(processor: processor, item: .data(data)))
+//                result = .failure(error)
+//            }
+//            onImageProcessed.call((result, callback))
+//        }
     }
 }
