@@ -340,7 +340,7 @@ extension KingfisherWrapper where Base: KFCrossPlatformImageView {
 //                        let error = KingfisherError.imageSettingError(reason: reason)
 //                        completionHandler?(.failure(error))
 //                        return
-                    }
+//                    }
 
 //                    mutatingSelf.imageTask = nil
                     mutatingSelf.taskIdentifier = nil
