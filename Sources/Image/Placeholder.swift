@@ -49,10 +49,16 @@ public protocol Placeholder {
 /// reset directly for `image` property of the image view.
 extension KFCrossPlatformImage: Placeholder {
     /// How the placeholder should be added to a given image view.
-    public func add(to imageView: KFCrossPlatformImageView) { imageView.image = self }
+    public func add(to imageView: KFCrossPlatformImageView) {
+        imageView.image = self
+        
+    }
 
     /// How the placeholder should be removed from a given image view.
-    public func remove(from imageView: KFCrossPlatformImageView) { imageView.image = nil }
+    public func remove(from imageView: KFCrossPlatformImageView) {
+        imageView.image = nil
+        
+    }
 }
 
 /// Default implementation of an arbitrary view as placeholder. The view will be 
