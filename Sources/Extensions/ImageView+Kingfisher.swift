@@ -343,7 +343,7 @@ extension KingfisherWrapper where Base: KFCrossPlatformImageView {
 //                    }
 
 //                    mutatingSelf.imageTask = nil
-                    mutatingSelf.taskIdentifier = nil
+//                    mutatingSelf.taskIdentifier = nil
 
                     switch result {
                     case .success(let value):
