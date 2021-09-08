@@ -322,8 +322,6 @@ extension KingfisherWrapper where Base: KFCrossPlatformImageView {
 //            $0.onShouldApply = { issuedIdentifier == self.taskIdentifier }
 //        }
         
-        let mtImage = mutatingSelf.base.image
-
         let task = KingfisherManager.shared.retrieveImage(
             with: source,
             options: options,
@@ -518,7 +516,10 @@ extension KingfisherWrapper where Base: KFCrossPlatformImageView {
     /// Represents the `Placeholder` used for this image view. A `Placeholder` will be shown in the view while
     /// it is downloading an image.
     public private(set) var placeholder: Placeholder? {
-        get { return getAssociatedObject(base, &placeholderKey) }
+        get {
+            let object: Placeholder? = getAssociatedObject(base, &placeholderKey)
+            return object
+        }
         set {
             if let previousPlaceholder = placeholder {
                 previousPlaceholder.remove(from: base)
@@ -529,7 +530,8 @@ extension KingfisherWrapper where Base: KFCrossPlatformImageView {
             } else {
                 base.image = nil
             }
-            setRetainedAssociatedObject(base, &placeholderKey, newValue)
+            let val = newValue
+            setRetainedAssociatedObject(base, &placeholderKey, val)
         }
     }
 }
