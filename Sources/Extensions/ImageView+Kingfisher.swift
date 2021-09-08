@@ -303,24 +303,24 @@ extension KingfisherWrapper where Base: KFCrossPlatformImageView {
 
         let issuedIdentifier = Source.Identifier.next()
         mutatingSelf.taskIdentifier = issuedIdentifier
-//
-//        if base.shouldPreloadAllAnimation() {
-//            options.preloadAllAnimationData = true
-//        }
-//
-//        if let block = progressBlock {
-//            options.onDataReceived = (options.onDataReceived ?? []) + [ImageLoadingProgressSideEffect(block)]
-//        }
-//
-//        if let provider = ImageProgressiveProvider(options, refresh: { image in
-//            self.base.image = image
-//        }) {
-//            options.onDataReceived = (options.onDataReceived ?? []) + [provider]
-//        }
-//
-//        options.onDataReceived?.forEach {
-//            $0.onShouldApply = { issuedIdentifier == self.taskIdentifier }
-//        }
+
+        if base.shouldPreloadAllAnimation() {
+            options.preloadAllAnimationData = true
+        }
+
+        if let block = progressBlock {
+            options.onDataReceived = (options.onDataReceived ?? []) + [ImageLoadingProgressSideEffect(block)]
+        }
+
+        if let provider = ImageProgressiveProvider(options, refresh: { image in
+            self.base.image = image
+        }) {
+            options.onDataReceived = (options.onDataReceived ?? []) + [provider]
+        }
+
+        options.onDataReceived?.forEach {
+            $0.onShouldApply = { issuedIdentifier == self.taskIdentifier }
+        }
         
         let task = KingfisherManager.shared.retrieveImage(
             with: source,
@@ -330,19 +330,19 @@ extension KingfisherWrapper where Base: KFCrossPlatformImageView {
                 CallbackQueue.mainCurrentOrAsync.execute {
                     maybeIndicator?.stopAnimatingView()
                     guard issuedIdentifier == self.taskIdentifier else {
-//                        let reason: KingfisherError.ImageSettingErrorReason
-//                        do {
-//                            let value = try result.get()
-//                            reason = .notCurrentSourceTask(result: value, error: nil, source: source)
-//                        } catch {
-//                            reason = .notCurrentSourceTask(result: nil, error: error, source: source)
-//                        }
-//                        let error = KingfisherError.imageSettingError(reason: reason)
-//                        completionHandler?(.failure(error))
+                        let reason: KingfisherError.ImageSettingErrorReason
+                        do {
+                            let value = try result.get()
+                            reason = .notCurrentSourceTask(result: value, error: nil, source: source)
+                        } catch {
+                            reason = .notCurrentSourceTask(result: nil, error: error, source: source)
+                        }
+                        let error = KingfisherError.imageSettingError(reason: reason)
+                        completionHandler?(.failure(error))
                         return
                     }
 
-//                    mutatingSelf.imageTask = nil
+                    mutatingSelf.imageTask = nil
                     mutatingSelf.taskIdentifier = nil
 
                     switch result {
@@ -350,9 +350,9 @@ extension KingfisherWrapper where Base: KFCrossPlatformImageView {
                         self.base.image = value.image
 
 
-//                        self.makeTransition(image: value.image, transition: options.transition) {
-//                            completionHandler?(result)
-//                        }
+                        self.makeTransition(image: value.image, transition: options.transition) {
+                            completionHandler?(result)
+                        }
 
                     case .failure:
                         if let image = options.onFailureImage {
@@ -363,7 +363,7 @@ extension KingfisherWrapper where Base: KFCrossPlatformImageView {
                 }
             }
         )
-//        mutatingSelf.imageTask = task
+        mutatingSelf.imageTask = task
         return task
     }
 
