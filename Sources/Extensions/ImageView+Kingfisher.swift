@@ -321,6 +321,8 @@ extension KingfisherWrapper where Base: KFCrossPlatformImageView {
 //        options.onDataReceived?.forEach {
 //            $0.onShouldApply = { issuedIdentifier == self.taskIdentifier }
 //        }
+        
+        let mtImage = mutatingSelf.base.image
 
         let task = KingfisherManager.shared.retrieveImage(
             with: source,
